@@ -1,0 +1,95 @@
+<div class="graph-control-wrapper">      
+  <div class="action-wrapper">
+    <div class="add-control btn" (click)="openAddModal()">Add</div>
+    <div class="edit-control btn" (click)="openEditModal()">Edit</div>
+    <div class="delete-control btn" (click)="openDeleteModal()">Delete</div>
+  </div>
+</div>
+
+<!-- Add Model -->
+<div class="backdrop" [class.hide]="!state.showAddModel">
+  <div class="modal">
+      <div class="add-graph-model model">
+        <div class="fieldset">
+          <span class="label">Title</span>
+          <input type="text" [(ngModel)]="this.state.newGraphTitle" value="" />
+        </div>
+        <div class="fieldset">
+          <span class="label">Graph Type</span>
+          <select [(ngModel)]="state.defaultAddChart">
+            <option *ngFor="let c of state.chartTypes" value={{c.name}}>{{c.name}}</option>
+          </select>
+        </div>
+        <div class="fieldset">
+          <span class="label">Layout</span>
+          <select [(ngModel)]="state.defaultLayout">
+            <option *ngFor="let c of state.layoutType" value={{c.name}}>{{c.name}}</option>
+          </select>
+        </div>
+
+        <div class="add-graph btn" (click)="addGraph()">Add Graph</div>
+      </div>
+
+      <div class="footer">
+        <button (click)="closeAddModel()">Close</button>
+      </div>
+  </div>
+</div>
+
+<!-- Edit Model -->
+<div class="backdrop" [class.hide]="!state.showEditModel">
+  <div class="modal">
+      <div class="edit-graph-model model">
+        <div class="fieldset">
+          <span class="label">Select Graph</span>
+          <select [ngModel]="state.selectedGraphObj" (ngModelChange)="changeSelectedGraphObj($event)">
+            <option [ngValue]="i" *ngFor="let i of state.graphData">{{i.title}}</option>
+          </select>
+        </div>
+
+        <div class="fieldset">
+          <span class="label">Title</span>
+          <input type="text" [ngModel]="state.editSelectedTitle" />
+        </div>
+
+        <div class="fieldset">
+          <span class="label">Graph Type</span>
+          <select [(ngModel)]="state.editSelectedGraphType">
+            <option *ngFor="let c of state.chartTypes" value={{c.name}}>{{c.name}}</option>
+          </select>
+        </div>
+
+        <div class="fieldset">
+          <span class="label">Layout</span>
+          <select [(ngModel)]="state.editSelectedlayoutType">
+            <option *ngFor="let c of state.layoutType" value={{c.name}}>{{c.name}}</option>
+          </select>
+        </div>
+
+        <div class="add-graph btn" (click)="editGraph()">Save Changes</div>
+      </div>
+      <div class="footer">
+        <button (click)="closeEditModel()">Close</button>
+      </div>
+  </div>
+</div>
+
+<!-- Delete Model -->
+<div class="backdrop" [class.hide]="!state.showDeleteModel">
+  <div class="modal">
+      <div class="delete-graph-model model">
+        <div class="fieldset">
+          <span class="label">Select Graph</span>
+          <select [ngModel]="state.selectedGraphObj" (ngModelChange)="changeSelectedGraphObj($event)">
+            <option [ngValue]="i" *ngFor="let i of state.graphData">{{i.title}}</option>
+          </select>
+        </div>
+
+        <div class="add-graph btn" (click)="deleteSelectedGraph()">Delete Graph</div>
+      </div>
+      <div class="footer">
+        <button (click)="closeDeleteModel()">Close</button>
+      </div>
+  </div>
+</div>
+
