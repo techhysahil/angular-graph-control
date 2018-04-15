@@ -4,6 +4,7 @@
     <div class="edit-control btn" (click)="openEditModal()">Edit</div>
     <div class="delete-control btn" (click)="openDeleteModal()">Delete</div>
   </div>
+  <!-- {{this.state.graphData | json}} -->
 </div>
 
 <!-- Add Model -->
@@ -49,7 +50,7 @@
 
         <div class="fieldset">
           <span class="label">Title</span>
-          <input type="text" [ngModel]="state.editSelectedTitle" />
+          <input type="text" [(ngModel)]="state.editSelectedTitle" />
         </div>
 
         <div class="fieldset">

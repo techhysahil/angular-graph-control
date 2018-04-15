@@ -106,6 +106,7 @@ export class AppComponent {
 	}
 	changeSelectedGraphObj(obj) {
 		this.state.selectedGraphObj = obj;
+		this.state.selectedDeleteObj = obj;
 		this.state.editSelectedTitle = obj.title;
 		this.state.editSelectedGraphType = obj.type;
 		this.state.editSelectedlayoutType = obj.layout;
